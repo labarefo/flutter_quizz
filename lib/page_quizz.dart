@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quizz/question.dart';
 
@@ -17,6 +18,7 @@ class _MaPageQuizzState extends State<PageQuizz> {
   List<Question> listeQuestions = [
     new Question('La devise de la Belgique est l\'union fait la force', true, '', 'belgique.jpg'),
     new Question('La lune va finir par tomber sur terre à cause de la gravité', false, 'Au contraire la lune s\'éloigne', 'lune.jpg'),
+    //*
     new Question('La Russie est plus grande en superficie que Pluton', true, '', 'russie.jpg'),
     new Question('Nyctalope est une race naine d\'antilope', false, 'C’est une aptitude à voir dans le noir', 'nyctalope.jpg'),
     new Question('Le Commodore 64 est l\’oridnateur de bureau le plus vendu', true, '', 'commodore.jpg'),
@@ -25,6 +27,8 @@ class _MaPageQuizzState extends State<PageQuizz> {
     new Question('La barbe des pharaons était fausse', true, 'A l\'époque déjà ils utilisaient des postiches', 'pharaon.jpg'),
     new Question('Au Québec tire toi une bûche veut dire viens viens t\'asseoir', true, 'La bûche, fameuse chaise de bucheron', 'buche.jpg'),
     new Question('Le module lunaire Eagle possédait 4Ko de Ram', true, 'Dire que je me plains avec mes 8GO de ram sur mon mac', 'eagle.jpg'),
+
+     //*/
   ];
 
   Question quizz;
@@ -157,26 +161,32 @@ class _MaPageQuizzState extends State<PageQuizz> {
         barrierDismissible: false,
         builder: (BuildContext context){
           return new SimpleDialog(
-            title: new Text("C'est fini", textScaleFactor: 1.5,),
+            title: new Text("C'est fini",
+              textScaleFactor: 1.4,
+              textAlign: TextAlign.center,
+              style: new TextStyle(color: Colors.green, fontStyle: FontStyle.italic),
+            ),
             contentPadding: EdgeInsets.all(10.0),
             children: [
-              new Column(
+              new Text("Votre score est $score/$numero",
+                textAlign: TextAlign.center,
+              ),
+              new Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  new Text("Votre score est $score/$numero"),
-
+                  new Container(
+                    height: 1.0,
+                  ),
                   new FlatButton(
                       textColor: Colors.blue,
-
                       child: new Text('OK',
-                      textAlign: TextAlign.right,),
+                      ),
                       onPressed: (){
                         Navigator.pop(context);
                         Navigator.pop(context);
                       })
                 ],
               )
-
             ],
           );
         }
